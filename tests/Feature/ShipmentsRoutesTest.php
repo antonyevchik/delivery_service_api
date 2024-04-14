@@ -21,7 +21,7 @@ class ShipmentsRoutesTest extends TestCase
         $this->actingAs($this->user);
 
         DeliveryService::factory()->create([
-            'name' => 'Nova Poshta',
+            'name'        => 'Nova Poshta',
             'description' => 'Nova Poshta Delivery Service'
         ]);
     }
@@ -59,12 +59,12 @@ class ShipmentsRoutesTest extends TestCase
     public function it_stores_shipment_info_to_service()
     {
         $this->json('POST', route('shipments.store', ['delivery' => 1]), [
-            'sender' => 1,
+            'sender'   => 1,
             'receiver' => 2,
             'shipment' => [
                 'description' => $this->faker->sentence,
-                'weight' => $this->faker->numberBetween(1, 10),
-                'size' => '10x15x20'
+                'weight'      => $this->faker->numberBetween(1, 10),
+                'size'        => '10x15x20'
             ]
         ])->assertStatus(201);
     }
@@ -75,7 +75,7 @@ class ShipmentsRoutesTest extends TestCase
     public function it_updates_shipment_info_to_service()
     {
         $this->json('PUT', route('shipments.update', ['delivery' => 1]), [
-            'sender' => 1,
+            'sender'   => 1,
             'receiver' => 2,
             'shipment' => 1
         ])->assertStatus(200);

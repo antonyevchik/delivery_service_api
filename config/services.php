@@ -14,28 +14,28 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+    'mailgun'  => [
+        'domain'   => env('MAILGUN_DOMAIN'),
+        'secret'   => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-        'scheme' => 'https',
+        'scheme'   => 'https',
     ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
-    'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
+    'ses'      => [
+        'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'clients' => [
+    'clients'  => [
         'nova_poshta' => [
             'key' => env('NOVA_POSHTA_API_KEY')
         ],
-        'ukrposhta' => [
+        'ukrposhta'   => [
             'key' => env('UKRPOSHTA_API_KEY')
         ]
     ]

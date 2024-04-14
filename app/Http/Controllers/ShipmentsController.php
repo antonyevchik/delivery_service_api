@@ -21,7 +21,7 @@ class ShipmentsController extends Controller implements ShipmentsInterface
     public function store(DeliveryService $delivery, StoreShipmentRequest $request)
     {
         $delivery->client()->store([
-            'sender' => $request['sender'],
+            'sender'   => $request['sender'],
             'receiver' => $request['receiver'],
             'shipment' => $request['shipment']
         ]);
@@ -34,7 +34,7 @@ class ShipmentsController extends Controller implements ShipmentsInterface
     public function update(DeliveryService $delivery, UpdateShipmentRequest $request)
     {
         $delivery->client()->update([
-            'sender' => $request['sender'],
+            'sender'   => $request['sender'],
             'receiver' => $request['receiver'],
             'shipment' => $request['shipment']
         ]);

@@ -22,7 +22,7 @@ class StoreShipmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sender' => 'required|numeric',
+            'sender'   => 'required|numeric',
             'receiver' => 'required|numeric',
             'shipment' => 'required|array'
         ];
