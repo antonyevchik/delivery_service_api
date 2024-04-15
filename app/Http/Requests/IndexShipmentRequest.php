@@ -22,7 +22,8 @@ class IndexShipmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sender' => 'required|numeric'
+            'sender' => 'sometimes|numeric',
+            'search' => 'required|string'
         ];
     }
 }

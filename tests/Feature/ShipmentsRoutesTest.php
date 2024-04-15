@@ -32,7 +32,9 @@ class ShipmentsRoutesTest extends TestCase
     public function it_fetches_list_of_shipments()
     {
         $this->json('GET', route('shipments.index', ['delivery' => 1]), [
-            'sender' => 1
+            'sender'   => 1,
+            'search'   => $this->faker->word,
+
         ])->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -49,6 +51,24 @@ class ShipmentsRoutesTest extends TestCase
                     'per_page',
                     'to',
                     'total',
+                ]
+            ]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_found_by_id()
+    {
+        $this->json('GET', route('shipments.find-by-id', ['delivery' => 1, 'shipment' => 1]), [
+            'sender'   => 1
+        ])->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [
+                    'id',
+                    'description',
+                    'weight',
+                    'size',
                 ]
             ]);
     }
@@ -74,10 +94,9 @@ class ShipmentsRoutesTest extends TestCase
      */
     public function it_updates_shipment_info_to_service()
     {
-        $this->json('PUT', route('shipments.update', ['delivery' => 1]), [
+        $this->json('PUT', route('shipments.update', ['delivery' => 1, 'shipment' => 1]), [
             'sender'   => 1,
-            'receiver' => 2,
-            'shipment' => 1
+            'receiver' => 2
         ])->assertStatus(200);
     }
 
@@ -86,8 +105,7 @@ class ShipmentsRoutesTest extends TestCase
      */
     public function it_deletes_shipment_info_to_service()
     {
-        $this->json('DELETE', route('shipments.destroy', ['delivery' => 1]), [
-            'shipment' => 1
-        ])->assertStatus(204);
+        $this->json('DELETE', route('shipments.destroy', ['delivery' => 1, 'shipment' => 1]))
+            ->assertStatus(204);
     }
 }

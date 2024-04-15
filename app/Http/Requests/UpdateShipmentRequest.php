@@ -23,8 +23,7 @@ class UpdateShipmentRequest extends FormRequest
     {
         return [
             'sender'   => 'required|numeric',
-            'receiver' => 'required|numeric',
-            'shipment' => 'required|numeric'
+            'receiver' => 'required|numeric'
         ];
     }
 }

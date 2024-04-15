@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\ShipmentsInterface;
 use App\Http\Requests\DeleteShipmentRequest;
+use App\Http\Requests\FindByIdShipmentRequest;
 use App\Http\Requests\IndexShipmentRequest;
 use App\Http\Requests\StoreShipmentRequest;
 use App\Http\Requests\UpdateShipmentRequest;
@@ -14,7 +15,16 @@ class ShipmentsController extends Controller implements ShipmentsInterface
     public function index(DeliveryService $delivery, IndexShipmentRequest $request)
     {
         return $delivery->client()->index([
-            'sender' => $request['sender']
+            'sender' => $request['sender'],
+            'search' => $request['search']
+        ]);
+    }
+
+    public function findById(DeliveryService $delivery, int $shipment, FindByIdShipmentRequest $request)
+    {
+        return $delivery->client()->findById([
+            'sender'   => $request['sender'],
+            'shipment' => $shipment
         ]);
     }
 
@@ -31,12 +41,12 @@ class ShipmentsController extends Controller implements ShipmentsInterface
         ], 201);
     }
 
-    public function update(DeliveryService $delivery, UpdateShipmentRequest $request)
+    public function update(DeliveryService $delivery, int $shipment, UpdateShipmentRequest $request)
     {
         $delivery->client()->update([
             'sender'   => $request['sender'],
             'receiver' => $request['receiver'],
-            'shipment' => $request['shipment']
+            'shipment' => $shipment
         ]);
 
         return response()->json([
@@ -44,10 +54,10 @@ class ShipmentsController extends Controller implements ShipmentsInterface
         ]);
     }
 
-    public function destroy(DeliveryService $delivery, DeleteShipmentRequest $request)
+    public function destroy(DeliveryService $delivery, int $shipment, DeleteShipmentRequest $request)
     {
         $delivery->client()->update([
-            'shipment' => $request['shipment']
+            'shipment' => $shipment
         ]);
 
         return response()->json([

@@ -19,6 +19,12 @@ class NovaPoshta implements Client
             ->post(sprintf('%s/index', $this->endpoint()), $attributes)->json();
     }
 
+    public function findById(array $attributes)
+    {
+        return Http::withToken($this->key)
+            ->post(sprintf('%s/findById', $this->endpoint()), $attributes)->json();
+    }
+
     public function store(array $attributes)
     {
         return Http::withToken($this->key)

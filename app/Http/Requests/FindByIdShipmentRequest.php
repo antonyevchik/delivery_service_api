@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteShipmentRequest extends FormRequest
+class FindByIdShipmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,6 +21,8 @@ class DeleteShipmentRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'sender'   => 'required|numeric'
+        ];
     }
 }
